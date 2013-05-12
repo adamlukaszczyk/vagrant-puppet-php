@@ -65,7 +65,7 @@ To install a PEAR package, pass the package name to the `php::pear::install` hel
 
 ~~~~~ruby
 # Installs the PHPUnit PEAR package
-php::pear::phpunit { 'phpunit':
+php::pear::install { 'phpunit':
   package => 'pear.phpunit.de/PHPUnit',
   creates => '/usr/bin/phpunit',
 }
