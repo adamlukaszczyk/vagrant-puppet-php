@@ -84,3 +84,14 @@ php::pear::install { 'phpunit':
   dependencies => 'true',
 }
 ~~~~~
+#### Specify PEAR package requirements
+The `php::pear::install` helper requires that `php` Class. You may specify additional requirements using the `require` parameter:
+
+~~~~~ruby
+# Requires the execution of 'wibble', prior to installing PHPUnit
+php::pear::install { 'phpunit':
+  package      => 'pear.phpunit.de/PHPUnit',
+  creates      => '/usr/bin/phpunit',
+  require      => Exec['wibble'],
+}
+~~~~~
