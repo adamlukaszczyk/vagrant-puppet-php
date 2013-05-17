@@ -1,5 +1,11 @@
 class php::pear {
-  exec { 'php_pear_upgrade':
+  if ! defined(Package['php-pear']) {
+    package { 'php-pear':
+      ensure => 'present',
+    }
+  }
+
+  exec { 'php::pear::upgrade':
     command => '/usr/bin/pear upgrade',
     require => Package['php-pear'],
 
@@ -7,14 +13,14 @@ class php::pear {
     returns => [0, '', ' '],
   }
 
-  exec { 'php_pear_autodiscover':
+  exec { 'php::pear::set_autodiscover':
     command => '/usr/bin/pear config-set auto_discover 1',
-    require => Exec['php_pear_upgrade'],
+    require => Exec['php::pear::upgrade'],
   }
 
-  exec { 'php_pear_update_channels':
+  exec { 'php::pear::update_channels':
     command => '/usr/bin/pear update-channels',
-    require => Exec['php_pear_autodiscover'],
+    require => Exec['php::pear::set_autodiscover'],
   }
 }
 

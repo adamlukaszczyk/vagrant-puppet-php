@@ -1,5 +1,7 @@
 define php::extension ($extension = $title, $ensure = 'present', $require = undef) {
-  $base_require = Package['php5']
+  include 'php'
+
+  $base_require = Class['php']
 
   if $require {
     $full_require = [ $base_require, $require ]
