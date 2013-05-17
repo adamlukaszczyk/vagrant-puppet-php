@@ -1,6 +1,8 @@
 class php {
-  package { 'php5':
-    ensure => 'present',
+  if ! defined(Package['php5']) {
+    package { 'php5':
+      ensure => 'present',
+    }
   }
 
   file { 'php.ini':
