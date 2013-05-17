@@ -71,4 +71,16 @@ php::pear::install { 'phpunit':
 }
 ~~~~~
 
-The `creates` parameter is required, to ensure that we do not attempt to install a PEAR package that is already installed. Yes, it's a clunky solution.
+The `creates` parameter is required, to ensure that we do not attempt to install a PEAR package that is already installed.
+
+#### Install PEAR package dependencies
+To install a PEAR package's dependencies, set the `dependencies` parameter to 'true':
+
+~~~~~ruby
+# Installs the PHPUnit PEAR package, along with any dependencies
+php::pear::install { 'phpunit':
+  package      => 'pear.phpunit.de/PHPUnit',
+  creates      => '/usr/bin/phpunit',
+  dependencies => 'true',
+}
+~~~~~
