@@ -5,8 +5,8 @@ Puppet manifests to install and configure PHP on our default Ubuntu Precise Vagr
 ### Install PHP
 To install PHP add one of the following to your manifest:
 
-1. `class { 'php': }`
-2. `include 'php'`
+- `class { 'php': }`
+- `include 'php'`
 
 This will install PHP 5.3.10 (via the Ubuntu package manager), and configure it for development. Take a look at `files/development.php.ini` for the exact configuration details.
 
