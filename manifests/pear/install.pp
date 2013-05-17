@@ -1,4 +1,10 @@
-define php::pear::install ($package = $title, $creates, $dependencies = 'false') {
+define php::pear::install (
+  $package = $title,
+  $creates,
+  $dependencies = undef,
+  $require = undef
+) {
+
   include 'php::pear'
 
   if ($dependencies == 'true') {
@@ -7,11 +13,19 @@ define php::pear::install ($package = $title, $creates, $dependencies = 'false')
     $deps = ''
   }
 
+  $base_require = Class['php']
+
+  if $require {
+    $full_require = [ $base_require, $require ]
+  } else {
+    $full_require = $base_require
+  }
+
   exec { "php::pear::install_${title}":
     command => "pear install ${deps} ${package}",
     creates => $creates,
     path    => '/usr/bin:/usr/sbin',
-    require => Class['php::pear'],
+    require => $full_require,
   }
 }
 
