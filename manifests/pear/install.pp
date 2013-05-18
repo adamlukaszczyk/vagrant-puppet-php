@@ -13,7 +13,7 @@ define php::pear::install (
     $deps = ''
   }
 
-  $base_require = Class['php']
+  $base_require = Class['php::pear']
 
   if $require {
     $full_require = [ $base_require, $require ]
