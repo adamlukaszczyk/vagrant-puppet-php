@@ -95,3 +95,11 @@ php::pear::install { 'phpunit':
   require      => Exec['wibble'],
 }
 ~~~~~
+
+### Discover a PEAR channel
+By default, PEAR is set to auto-discover new channels. If this proves to be insufficient, you can explicitly instruct PEAR to 'discover' a channel using the `php::pear::discover` helper:
+
+~~~~~ruby
+# Discovers the PHPDoc channel
+php::pear::discover { 'pear.phpdoc.org': }
+~~~~~
