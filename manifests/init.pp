@@ -1,7 +1,7 @@
-class php {
+class php ($php_version = 'present') {
   if ! defined(Package['php5']) {
     package { 'php5':
-      ensure => 'present',
+      ensure => $php_version,
     }
   }
 
